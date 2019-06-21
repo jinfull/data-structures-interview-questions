@@ -90,7 +90,12 @@ function balancedParens(str) {
     if (bracketPairs[char]) {
       stack.push(char);
     } else if (char === ')' || char === ']' || char === '}') {
+      // stack.pop() in the conditional will pop either way
+      // let stackTop = stack.pop();
+      // if stackTop !== currentChar, return false because
+      // there's a mismatch and it's no bueno
       if (bracketPairs[stack.pop()] !== char) {
+        // but if it isn't a corresponding closing symbol, we'll return false
         return false;
       }
     }
