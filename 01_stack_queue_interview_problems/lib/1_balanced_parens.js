@@ -78,19 +78,34 @@
 function balancedParens(str) {
   let stack = [];
 
+  let bracketPairs = {
+    '(' : ')',
+    '{' : '}',
+    '[' : ']'
+  };
+
   for (let i = 0; i < str.length; i++) {
-    if (str[i] === '(') {
-      stack.push('(');
-    } else if (str[i] === ')' && stack.length === 0) {
-      return false;
-    } else if (str[i] === ')') {
-      stack.pop();
+    let char = str[i];
+
+    if (bracketPairs[char]) {
+      stack.push(char);
+    } else if (char === ')' || char === ']' || char === '}') {
+      if (bracketPairs[stack.pop()] !== char) {
+        return false;
+      }
     }
+
+    // if (str[i] === '(') {
+    //   stack.push('(');
+    // } else if (str[i] === ')' && stack.length === 0) {
+    //   return false;
+    // } else if (str[i] === ')') {
+    //   stack.pop();
+    // }
   }
 
-  if (stack.length === 0) return true;
 
-  return false;
+  return stack.length === 0;
 }
 
 exports.balancedParens = balancedParens;
