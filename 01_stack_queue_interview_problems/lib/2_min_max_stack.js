@@ -87,6 +87,10 @@ class MinMaxStack {
         if (!this.maximumArr.length || newNode.value > this.maximumArr[this.maximumArr.length - 1].value) {
             this.maximumArr.push(newNode);
         } 
+        // why can't the below statement be else if?? 
+        // why does it have to be a standalone if?
+        // i guess they aren't exclusive. a newNode can be both of these i guess if it is the first node.
+        
         if (!this.minimumArr.length || newNode.value < this.minimumArr[this.minimumArr.length - 1].value) {
             this.minimumArr.push(newNode);
         }
