@@ -83,21 +83,21 @@ class MinMaxStack {
 
     push(val) {
         const newNode = new Node(val);
+
+        if (!this.maximumArr.length || newNode.value > this.maximumArr[this.maximumArr.length - 1].value) {
+            this.maximumArr.push(newNode);
+        } 
+        if (!this.minimumArr.length || newNode.value < this.minimumArr[this.minimumArr.length - 1].value) {
+            this.minimumArr.push(newNode);
+        }
+
         if (!this.top) {
             this.top = newNode;
             this.bottom = newNode;
-            this.minimumArr = newNode;
-            this.maximumArr = newNode;
         } else {
             const temp = this.top;
             this.top = newNode;
             this.top.next = temp;
-
-            if (newNode.value > this.max().value) {
-                this.maximumArr = newNode;
-            } else if (newNode.value < this.min().value) {
-                this.minimumArr = newNode;
-            }
         }
 
         return ++this.length;
@@ -107,10 +107,22 @@ class MinMaxStack {
         if (!this.top) {
             return null;
         }
+
+
+
+        if (this.top.value === this.minimumArr[this.minimumArr.length - 1].value) {
+            this.minimumArr.pop();
+        } 
+        if (this.top.value === this.maximumArr[this.maximumArr.length - 1].value) {
+            this.maximumArr.pop();
+        }
+
         const temp = this.top;
+
         if (this.top === this.bottom) {
             this.bottom = null;
         }
+
         this.top = this.top.next;
         this.length--;
 
@@ -122,13 +134,11 @@ class MinMaxStack {
     }
 
     min() {
-        if (!this.size()) return null;
-        return this.minimum;
+        return this.minimumArr[this.minimumArr.length - 1] || null;
     }
 
     max() {
-        if (!this.size()) return null;
-        return this.maximum;
+        return this.maximumArr[this.maximumArr.length - 1] || null;
     }
 }
 
