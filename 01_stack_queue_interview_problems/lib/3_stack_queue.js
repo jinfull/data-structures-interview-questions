@@ -77,8 +77,26 @@ class Stack {
 }
 
 class StackQueue {
+    constructor() {
+        this.front = null;
+        this.back = null;
+        this.inStack = null;
+        this.outStack = null;
+        this.length = 0;
+    }
     // TODO: Implement the StackQueue class!
 
+    enqueue(val) {
+
+    }
+
+    dequeue() {
+
+    }
+
+    size() {
+        return this.length;
+    }
 };
 
 exports.Node = Node;
