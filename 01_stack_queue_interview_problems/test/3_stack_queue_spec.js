@@ -73,31 +73,31 @@ describe('Problem 3: StackQueue', () => {
                 });
 
                 it('Should create a new node with the value provided as input', () => {
-                    stack.push({ value: 'A', next: null });
+                    stack.push('A');
                     expect(stack.top.value).to.equal('A');
                 });
 
                 it('Should reassign both the top and bottom pointers when a new node is added to the top of an empty stack', () => {
-                    stack.push({ value: 'A', next: null });
+                    stack.push('A');
                     expect(stack.top.value).to.equal('A');
                     expect(stack.bottom.value).to.equal('A');
                 });
 
                 it('Should reassign only the top pointer when new nodes are added to the top of the stack of size one or greater', () => {
-                    stack.push({ value: 'A', next: null });
-                    stack.push({ value: 'B', next: null });
+                    stack.push('A');
+                    stack.push('B');
                     expect(stack.top.value).to.equal('B');
                     expect(stack.bottom.value).to.equal('A');
-                    stack.push({ value: 'C', next: null });
+                    stack.push('C');
                     expect(stack.top.value).to.equal('C');
                     expect(stack.bottom.value).to.equal('A');
                 });
 
                 it('Should point the next property of the top node to the node that precedes it for stacks of size one or greater', () => {
-                    stack.push({ value: 'A', next: null });
-                    stack.push({ value: 'B', next: null });
+                    stack.push('A');
+                    stack.push('B');
                     expect(stack.top.next.value).to.eql('A');
-                    stack.push({ value: 'C', next: null });
+                    stack.push('C');
                     expect(stack.top.next.value).to.equal('B');
                 });
 
@@ -131,7 +131,7 @@ describe('Problem 3: StackQueue', () => {
                 });
 
                 it('Should reassign the top and bottom pointers to null if there is only one node in the stack', () => {
-                    stack.push({ value: 'A', next: null });
+                    stack.push('A');
                     expect(stack.top.value).to.equal('A');
                     expect(stack.bottom.value).to.equal('A');
                     stack.pop();
@@ -140,9 +140,9 @@ describe('Problem 3: StackQueue', () => {
                 });
 
                 it('Should reassign the top pointer to the node just below the top node for stacks of size two or greater', () => {
-                    stack.push({ value: 'A', next: null });
-                    stack.push({ value: 'B', next: null });
-                    stack.push({ value: 'C', next: null });
+                    stack.push('A');
+                    stack.push('B');
+                    stack.push('C');
                     expect(stack.top.value).to.equal('C');
                     stack.pop();
                     expect(stack.top.value).to.equal('B');
